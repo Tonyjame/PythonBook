@@ -4,10 +4,88 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../static/Edit/css/init/taobao.css" />
     <title>PythonBook</title>
+    <link rel="stylesheet" type="text/css" href="../static/Edit/css/style/style.css">
+    <script type="text/javascript" src="../static/Edit/js/iconfont.js"></script>
 </head>
-<body>
-   <div>
 
+</style>
+<body>
+   <div id="left-container">
+   		<div id="container-list">
+   			<div id="list-title">
+   				Spark 2.2.0 中文文档
+   			</div>
+   			<ul id="list-container">
+   				<li class="list-node"><a href="">spark概述</a></li>
+   				<li class="list-node"><a href="">编程指南</a></li>
+   				<li class="list-node"><a href="">部署指南</a></li>
+   				<li class="list-node"><a href="">div自定义设置滚动条样式</a></li>
+   				<li class="list-node"><a href="">spark概述</a></li>
+   				<li class="list-node"><a href="">spark概述</a></li>
+   				<li class="list-node"><a href="">spark概述</a></li>
+   				<li class="list-node"><a href="">spark概述</a></li>
+   				<li class="list-node"><a href="">spark概述</a></li>
+   				<li class="list-node"><a href="">spark概述</a></li>
+   				<li class="list-node"><a href="">编程指南</a></li>
+   				<li class="list-node"><a href="">部署指南</a></li>
+   				<li class="list-node"><a href="">div自定义设置滚动条样式</a></li>
+   				<li class="list-node"><a href="">spark概述</a></li>
+   				<li class="list-node"><a href="">spark概述</a></li>
+   				<li class="list-node"><a href="">spark概述</a></li>
+   				<li class="list-node"><a href="">spark概述</a></li>
+   				<li class="list-node"><a href="">spark概述</a></li>
+
+   				<li class="list-node"><a href="">spark概述</a></li>
+   				<li class="list-node"><a href="">编程指南</a></li>
+   				<li class="list-node"><a href="">部署指南</a></li>
+   				<li class="list-node"><a href="">div自定义设置滚动条样式</a></li>
+   				<li class="list-node"><a href="">spark概述</a></li>
+   				<li class="list-node"><a href="">spark概述</a></li>
+   				<li class="list-node"><a href="">spark概述</a></li>
+   				<li class="list-node"><a href="">spark概述</a></li>
+   				<li class="list-node"><a href="">spark概述</a></li><li class="list-node"><a href="">spark概述</a></li>
+   				<li class="list-node"><a href="">编程指南</a></li>
+   				<li class="list-node"><a href="">部署指南</a></li>
+   				<li class="list-node"><a href="">div自定义设置滚动条样式</a></li>
+   				<li class="list-node"><a href="">spark概述</a></li>
+   				<li class="list-node"><a href="">spark概述</a></li>
+   				<li class="list-node"><a href="">spark概述</a></li>
+   				<li class="list-node"><a href="">spark概述</a></li>
+   				<li class="list-node"><a href="">spark概述</a></li>
+   				<li class="list-node"><a href="">spark概述</a></li>
+   				<li class="list-node"><a href="">编程指南</a></li>
+   				<li class="list-node"><a href="">部署指南</a></li>
+   				<li class="list-node"><a href="">div自定义设置滚动条样式</a></li>
+   				<li class="list-node"><a href="">spark概述</a></li>
+   				<li class="list-node"><a href="">spark概述</a></li>
+   				<li class="list-node"><a href="">spark概述</a></li>
+   				<li class="list-node"><a href="">spark概述</a></li>
+   				<li class="list-node"><a href="">spark概述</a></li>
+   				<li id="blank"></li>
+   			</ul>
+   		</div>
    </div>
+   <div id="content-container" >
+   		<div id="container-title"></div>
+   		<div id="container" contenteditable="true">
+   			abc
+   		</div>   		
+   	</div>
+   	<div id="editer">
+   		<div onclick="getContent()" id="bottom-icon">
+   			<svg class="icon" aria-hidden="true" >
+			  <use xlink:href="#icon-gongju"></use>
+			</svg>
+   		</div>
+   	</div>
 </body>
+<script type="text/javascript">
+	function setPropers(){
+		document.getElementById("container").contentEditable = true;
+	}
+	function getContent(){
+		var content = document.getElementById("container").innerHTML 
+		alert(content)
+	}
+</script>
 </html>

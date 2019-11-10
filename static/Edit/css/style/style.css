@@ -1,0 +1,185 @@
+html,body{
+	height:100%;
+	width:100%;
+	overflow:hidden;
+	margin:0;
+	padding:0;
+
+}
+
+#left-container{
+    width:300px; 
+	height:100%;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	border-radius: 5px;
+	border: 1px #ddd solid;
+	position: absolute;
+	top: 0;
+	left: 0;
+	min-width: 300px;
+}
+
+@media screen and (min-width: 1507px){
+	#content-container{
+		width: 1200px;
+		height: 100%;
+		overflow:hidden;
+		margin: 0;
+		padding:0;
+		background: #fff;
+		position: absolute;
+		top: 0;
+		right: calc((100% - 1505px)/2);
+		left: calc((100% - 1505px)/2 + 305px);
+		min-width: 1200px;
+		border: none;
+		overflow-y: auto;
+	}
+	#container-title{
+		width: 100%;
+		height: 100px;
+	}
+	#content-container::-webkit-scrollbar{
+	    width:0.1px;
+	}
+}
+@media screen and (max-width: 1506px){
+	#content-container{
+		width: calc(100%-5px);
+		height: 100%;
+		/*overflow:hidden;*/
+		margin: 0;
+		padding:0;
+		background: #fff;
+		position: absolute;
+		top: 0;
+		right: 5px;
+		left:305px;
+		/*min-width: 1200px;*/
+		border: none;
+		overflow-y: auto;
+	}
+	#container-title{
+		width: 100%;
+		height: 100px;
+	}
+	#content-container::-webkit-scrollbar{
+	    width:0.1px;
+	}
+}
+@media screen and (max-width: 900px){
+	#left-container{
+	    width:0px; 
+		height:100%;
+		overflow: hidden;
+		margin: 0;
+		padding: 0;
+		border-radius: 5px;
+		border: 1px #ddd solid;
+		position: absolute;
+		top: 0;
+		left: 0;
+		min-width: 300px;
+	}
+	#content-container{
+		width: calc(100%-5px);
+		height: 100%;
+		/*overflow:hidden;*/
+		margin: 0;
+		padding:0;
+		background: #fff;
+		position: absolute;
+		top: 0;
+		right: 5px;
+		left:8px;
+		/*min-width: 1200px;*/
+		border: none;
+		overflow-y: auto;
+	}
+	#container-title{
+		width: 100%;
+		height: 50px;
+	}
+}
+
+#content-container:focus{
+	outline:none
+}
+#container{
+	width: 100%;
+	height: 100%;
+
+}
+#container:focus{
+	outline:none
+}
+#container-list{
+	width:100%; 
+	height:100%; 
+	/*实现自动滚动条*/
+	overflow-y: auto;
+	overflow:auto;
+	overflow-x: hidden
+}
+/*控制滚动条的粗细*/
+#container-list::-webkit-scrollbar{
+    width:0.1px;
+}
+
+#list-title{
+	width: 300px;
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	font-size: 24px;
+	font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+	cursor: pointer;
+	font-weight: lighter;
+}
+#list-container{
+	width: 300px;
+	height: 100%;
+	line-height: 2em;
+	margin: 0 0 0 15px;
+    padding: 0;
+    cursor: pointer;
+}
+.list-node{
+	overflow:hidden;
+	white-space: nowrap;
+	text-overflow:ellipsis;
+	font-size: 15px;
+	font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+	
+}
+.list-node a{
+	color: #34495e;
+}
+
+#editer{
+	width: 300px;
+	height: 30px;
+	cursor: pointer;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	background-color: rgba(255,255,255,0.8);
+}
+.icon {
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+#blank{
+	width: 300px;
+	height: 50px;
+}
+#bottom-icon{
+	width: 29px;
+	height: 29px;
+	margin-left: 20px;
+}
