@@ -202,5 +202,55 @@ class Database(object):
         return ret
 
     # 修改文件内容
-    def edit(self,Id,content):
+    def editContent(self,Id,content):
+        log_dir = self.DocumentDir + "/" + str(Id) + ".txt"
+        with open(log_dir,mode='w',encoding="utf-8") as f:
+            f.write(content)
+        return True
+
+    # 修改文章标题
+    def editTitle(self,Id,title):
+        IndexLogFile = self.readIndexLog(Id)
+        file_dir = self.IndexDir + "/" + IndexLogFile
+        with open(file_dir, mode='r', encoding="utf-8") as f:
+            lines = f.readlines()
+        insertStr = ""
+        for line in lines:
+            rem = line.split(":")
+            insertStr += line
+            if int(rem[0]) == int(Id):
+                insertStr = str(Id)+":"+str(title)+":"+str(rem[2])
+        with open(file_dir,mode='w',encoding="utf-8") as w:
+            w.write(insertStr)
+        return True
+
+    # 执行查询任务
+    def query(self,sql):
+        # 目前支持查询所有，支持limit查询,支持order by
         pass
+
+    def select(self,orderBy='desc',Limit=50,page=1):
+        with open(self.indexLog,mode='r',encoding="utf-8") as f:
+            result = f.readline()
+            # 获取开始位置
+            index = result.split(":")[0]
+            end = int(index)+int(Limit)
+            # 声明一个装文件的集合
+            collection_list = []
+            while result:
+                rem = result.split(":")
+                if int(rem[0]) < end or int(rem[1]) < end:
+                    collection_list.append(rem[2].split(".")[0])
+                result = f.readline()
+        # 读取文件
+        title_list = {}
+        for lin in collection_list:
+            file_dir = self.IndexDir + "/" + lin + ".log"
+            with open(file_dir,mode='r',encoding="utf-8") as f:
+                res = f.readline()
+                while res:
+                    ret = res.split(":")
+                    if int(ret[2]) == 0:
+                        title_list[ret[0]]=ret[1]
+                    res = f.readline()
+        return title_list

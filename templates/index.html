@@ -5,6 +5,44 @@
     <title>Title</title>
 </head>
 <body>
-hello,nihao
+<!-- 加载编辑器的容器 -->
+    <script id="container" name="content" type="text/plain">
+        这里写你的初始化内容
+    </script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="{{ url_for('static',filename='utf8-php/ueditor.config.js') }}"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="{{ url_for('static',filename='utf8-php/ueditor.all.js') }}"></script>
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var ue = UE.getEditor('container');
+        UE.ajax.requeset( 'hello', {
+
+             //请求方法。可选值： 'GET', 'POST'，默认值是'POST'
+             method: 'GET',
+
+             //超时时间。 默认为5000， 单位是ms
+             timeout: 10000,
+
+             //是否是异步请求。 true为异步请求， false为同步请求
+             async: true,
+
+             //请求携带的数据。如果请求为GET请求， data会经过stringify后附加到请求url之后。
+             data: {
+                 html:ue.getContent()
+             },
+
+             //请求成功后的回调， 该回调接受当前的XMLHttpRequest对象作为参数。
+             onsuccess: function ( xhr ) {
+                 console.log( xhr.responseText );
+             },
+
+             //请求失败或者超时后的回调。
+             onerror: function ( xhr ) {
+                  alert( 'Ajax请求失败' );
+             }
+
+         } );
+    </script>
 </body>
 </html>
