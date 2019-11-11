@@ -49,7 +49,7 @@
    				url:"/init_data",
    				success:function(responseText){
    					var data = JSON.parse(responseText)
-   					var first = 1
+   					var first = null
    					var index = 1
    					for(let key in data){
    						if(index == 1){
@@ -58,7 +58,10 @@
    						createLi(data[key],key)
    						index += 1
    					}
-   					get_article_Id(first)
+                  if(first != null){
+                     get_article_Id(first)
+                  }
+   					
    				}
    			});
    		}
