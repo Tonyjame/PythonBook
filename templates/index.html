@@ -13,7 +13,7 @@
    <div id="left-container">
    		<div id="container-list">
    			<div id="list-title">
-   				Spark 2.2.0 中文文档
+   				PythonBook文章管理系统
    			</div>
    			<ul id="list-container">
    				<!-- <li class="list-node" Id=1>spark概述</li> -->
@@ -38,6 +38,7 @@
    		<div class="select-list" onclick="newCreate()">新建</div>
    		<div class="select-list" onclick="save_content()">保存</div>
    		<div class="select-list" onclick="edit_content()">修改</div>
+   		<div class="select-list" onclick="deleteArticle()">删除</div>
    	</div>
    	<!-- 有时候js无法及时更新，这是因为浏览器的缓存问题-->
    	<script type="text/javascript" src="{{ url_for('static',filename='Edit/js/utlis/book-utils.js')}}"></script>
@@ -119,6 +120,9 @@
    		function newCreate(){
    			var article_name
 			article_name=prompt("请填写文章的名字");
+			if(prompt == "" || prompt == null){
+				return false;
+			}
 			book.httpRequest({
    				method:"GET",
    				url:"/add_article?article_name=" + article_name,
@@ -127,6 +131,23 @@
    					createLi(article_name,data.Id)
    				}
    			});
+   		}
+   		function deleteArticle(){
+   			var container = document.getElementById("container")
+   			var Id = container.getAttribute("index")
+   			book.httpRequest({
+   				method:"GET",
+   				url:"/delete_article?Id="+Id,
+   				success:function(responseText){
+   					container.innerHTML = ""
+   					// 将状态设置为不可修改
+   					book.setContentEditable("container",false)
+   				}
+   			});
+
+   		}
+   		function deleteEle(obj){
+   			
    		}
 	</script>
 </body>

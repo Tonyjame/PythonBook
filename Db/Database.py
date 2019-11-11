@@ -224,7 +224,21 @@ class Database(object):
         with open(file_dir,mode='w',encoding="utf-8") as w:
             w.write(insertStr)
         return True
-
+    # 删除文章
+    def deleteArticle(self,Id):
+        IndexLogFile = self.readIndexLog(Id)
+        file_dir = self.IndexDir + "/" + IndexLogFile
+        with open(file_dir, mode='r', encoding="utf-8") as f:
+            lines = f.readlines()
+        insertStr = ""
+        for line in lines:
+            rem = line.split(":")
+            insertStr += line
+            if int(rem[0]) == int(Id):
+                insertStr = str(Id)+":"+str(rem[1])+":"+str(1)
+        with open(file_dir,mode='w',encoding="utf-8") as w:
+            w.write(insertStr)
+        return True
     # 执行查询任务
     def query(self,sql):
         # 目前支持查询所有，支持limit查询,支持order by

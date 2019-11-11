@@ -43,6 +43,12 @@ def save_content():
 	Database().editContent(Id,content)
 	return jsonify({"status":200})
 
+@app.route("/delete_article")
+def delete_article():
+	Id = request.args.get("Id")
+	Database().deleteArticle(int(Id))
+	return jsonify({"status":200})
+
 if __name__ == '__main__':
     app.run(debug=True)
 
