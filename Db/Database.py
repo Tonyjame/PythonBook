@@ -133,6 +133,7 @@ class Database(object):
         with open(document_file,"w",encoding="utf-8") as p:
             p.write(content)
         self.updateLogFile(self.IndexDir+"/"+file_log,newIndex,title)
+        return newIndex
     # 更新log文件的内容
     def updateLogFile(self,fileName,Index,title):
         insertStr = str(Index)+":"+str(title)+":"+str(0)+"\n"

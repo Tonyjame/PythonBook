@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../static/Edit/css/init/taobao.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='Edit/css/init/taobao.css') }}" />
     <title>PythonBook</title>
-    <link rel="stylesheet" type="text/css" href="../static/Edit/css/style/style.css">
-    <script type="text/javascript" src="../static/Edit/js/iconfont.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='Edit/css/style/style.css')}}">
+    <script type="text/javascript" src="{{ url_for('static',filename='Edit/js/iconfont.js')}}"></script>
 </head>
 
 </style>
@@ -16,59 +16,15 @@
    				Spark 2.2.0 中文文档
    			</div>
    			<ul id="list-container">
-   				<li class="list-node"><a href="">spark概述</a></li>
-   				<li class="list-node"><a href="">编程指南</a></li>
-   				<li class="list-node"><a href="">部署指南</a></li>
-   				<li class="list-node"><a href="">div自定义设置滚动条样式</a></li>
-   				<li class="list-node"><a href="">spark概述</a></li>
-   				<li class="list-node"><a href="">spark概述</a></li>
-   				<li class="list-node"><a href="">spark概述</a></li>
-   				<li class="list-node"><a href="">spark概述</a></li>
-   				<li class="list-node"><a href="">spark概述</a></li>
-   				<li class="list-node"><a href="">spark概述</a></li>
-   				<li class="list-node"><a href="">编程指南</a></li>
-   				<li class="list-node"><a href="">部署指南</a></li>
-   				<li class="list-node"><a href="">div自定义设置滚动条样式</a></li>
-   				<li class="list-node"><a href="">spark概述</a></li>
-   				<li class="list-node"><a href="">spark概述</a></li>
-   				<li class="list-node"><a href="">spark概述</a></li>
-   				<li class="list-node"><a href="">spark概述</a></li>
-   				<li class="list-node"><a href="">spark概述</a></li>
-
-   				<li class="list-node"><a href="">spark概述</a></li>
-   				<li class="list-node"><a href="">编程指南</a></li>
-   				<li class="list-node"><a href="">部署指南</a></li>
-   				<li class="list-node"><a href="">div自定义设置滚动条样式</a></li>
-   				<li class="list-node"><a href="">spark概述</a></li>
-   				<li class="list-node"><a href="">spark概述</a></li>
-   				<li class="list-node"><a href="">spark概述</a></li>
-   				<li class="list-node"><a href="">spark概述</a></li>
-   				<li class="list-node"><a href="">spark概述</a></li><li class="list-node"><a href="">spark概述</a></li>
-   				<li class="list-node"><a href="">编程指南</a></li>
-   				<li class="list-node"><a href="">部署指南</a></li>
-   				<li class="list-node"><a href="">div自定义设置滚动条样式</a></li>
-   				<li class="list-node"><a href="">spark概述</a></li>
-   				<li class="list-node"><a href="">spark概述</a></li>
-   				<li class="list-node"><a href="">spark概述</a></li>
-   				<li class="list-node"><a href="">spark概述</a></li>
-   				<li class="list-node"><a href="">spark概述</a></li>
-   				<li class="list-node"><a href="">spark概述</a></li>
-   				<li class="list-node"><a href="">编程指南</a></li>
-   				<li class="list-node"><a href="">部署指南</a></li>
-   				<li class="list-node"><a href="">div自定义设置滚动条样式</a></li>
-   				<li class="list-node"><a href="">spark概述</a></li>
-   				<li class="list-node"><a href="">spark概述</a></li>
-   				<li class="list-node"><a href="">spark概述</a></li>
-   				<li class="list-node"><a href="">spark概述</a></li>
-   				<li class="list-node"><a href="">spark概述</a></li>
+   				<!-- <li class="list-node" Id=1>spark概述</li> -->
    				<li id="blank"></li>
    			</ul>
    		</div>
    </div>
    <div id="content-container" >
    		<div id="container-title"></div>
-   		<div id="container" contenteditable="true">
-   			abc
+   		<div id="container">
+   			
    		</div>   		
    	</div>
    	<div id="editer">
@@ -78,14 +34,100 @@
 			</svg>
    		</div>
    	</div>
+   	<div id="Button-select">
+   		<div class="select-list" onclick="newCreate()">新建</div>
+   		<div class="select-list" onclick="save_content()">保存</div>
+   		<div class="select-list" onclick="edit_content()">修改</div>
+   	</div>
+   	<!-- 有时候js无法及时更新，这是因为浏览器的缓存问题-->
+   	<script type="text/javascript" src="{{ url_for('static',filename='Edit/js/utlis/book-utils.js')}}"></script>
+   	<script type="text/javascript">
+   		function init(){
+   			book.httpRequest({
+   				method:"GET",
+   				url:"/init_data",
+   				success:function(responseText){
+   					var data = JSON.parse(responseText)
+   					for(let key in data){
+   						createLi(data[key],key)
+   					}
+   				}
+   			});
+   		}
+   		// 新建立列表
+   		function createLi(article_name,Id){
+   			//获取空白的对象
+			var blank_object = document.getElementById("blank")
+   			// 获取ID对象
+   			var list_container = document.getElementById("list-container")
+   			// 创建一个Li节点
+   			var list_child = document.createElement('li')
+   			// 设置节点的class属性
+   			list_child.className = 'list-node'
+   			list_child.innerText = article_name
+   			list_child.setAttribute('index',Id);
+   			list_child.setAttribute("onclick","get_article(this)")
+   			//在指定位置的前面挂在节点
+   			list_container.insertBefore(list_child,blank_object)
+   		}
+   		//获取文章内容，并且展示出来
+   		function get_article(obj){
+   			var Id = obj.getAttribute("index")
+   			var container = document.getElementById("container")
+   			book.httpRequest({
+   				method:"GET",
+   				url:"/get_article?Id="+Id,
+   				success:function(responseText){
+   					var data = JSON.parse(responseText)
+   					container.innerHTML = data.content
+   					container.setAttribute("index",Id)
+   					// 将状态设置为不可修改
+   					book.setContentEditable("container",false)
+   				}
+   			});
+   		}
+   		//选中按钮
+   		function select_focus(obj){
+   			//var edit_content = document.getElementById("container")
+   			
+   		}
+   		//修改为可以的状态
+   		function edit_content(){
+   			// 将修改区域改成可以修改的状态
+   			book.setContentEditable("container",true)
+   		}
+   		//保存内容
+   		function save_content(){
+   			//获取当前的ID
+   			var container = document.getElementById("container")
+   			var Id = container.getAttribute("index")
+   			var content = container.innerHTML
+   			book.httpRequest({
+   				method:"POST",
+   				data:{
+   					Id:Id,
+   					content:content
+   				},
+   				url:"/save_content",
+   				success:function(responseText){
+   					// 将状态设置为不可修改
+   					book.setContentEditable("container",false)
+   				}
+   			});
+   		}
+   		init()
+   		function newCreate(){
+   			var article_name
+			article_name=prompt("请填写文章的名字");
+			book.httpRequest({
+   				method:"GET",
+   				url:"/add_article?article_name=" + article_name,
+   				success:function(responseText){
+   					var data = JSON.parse(responseText)
+   					createLi(article_name,data.Id)
+   				}
+   			});
+   		}
+	</script>
 </body>
-<script type="text/javascript">
-	function setPropers(){
-		document.getElementById("container").contentEditable = true;
-	}
-	function getContent(){
-		var content = document.getElementById("container").innerHTML 
-		alert(content)
-	}
-</script>
 </html>
