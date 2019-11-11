@@ -58,9 +58,7 @@
    						createLi(data[key],key)
    						index += 1
    					}
-   					var container = document.getElementById("container")
-   					container.innerHTML = data[first]
-   					container.setAttribute("index",first)
+   					get_article_Id(first)
    				}
    			});
    		}
@@ -80,6 +78,21 @@
    			//在指定位置的前面挂在节点
    			list_container.insertBefore(list_child,blank_object)
    		}
+         //获取文章内容，并且展示出来
+         function get_article_Id(Id){
+            var container = document.getElementById("container")
+            book.httpRequest({
+               method:"GET",
+               url:"/get_article?Id="+Id,
+               success:function(responseText){
+                  var data = JSON.parse(responseText)
+                  container.innerHTML = data.content
+                  container.setAttribute("index",Id)
+                  // 将状态设置为不可修改
+                  book.setContentEditable("container",false)
+               }
+            });
+         }
    		//获取文章内容，并且展示出来
    		function get_article(obj){
    			var Id = obj.getAttribute("index")
