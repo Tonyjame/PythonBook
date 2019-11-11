@@ -49,9 +49,18 @@
    				url:"/init_data",
    				success:function(responseText){
    					var data = JSON.parse(responseText)
+   					var first = 1
+   					var index = 1
    					for(let key in data){
+   						if(index == 1){
+   							first = key
+   						}
    						createLi(data[key],key)
+   						index += 1
    					}
+   					var container = document.getElementById("container")
+   					container.innerHTML = data[first]
+   					container.setAttribute("index",first)
    				}
    			});
    		}
